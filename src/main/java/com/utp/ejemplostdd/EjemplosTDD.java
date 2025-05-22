@@ -4,6 +4,7 @@
 
 package com.utp.ejemplostdd;
 
+import com.utp.TDD.ListaDE_InFin;
 import com.utp.TDD.ListaSE_In;
 import com.utp.TDD.ListaSE_InFin;
 
@@ -53,9 +54,38 @@ public class EjemplosTDD {
         System.out.println(lista.toString());
         System.out.println("Primer valor: "+lista.obtenInicio());
     }
+    
+    public static void probandoListaDobleEnlazadaInicioTermino(){
+        ListaDE_InFin lista=new ListaDE_InFin();
+        lista.insertarInicio(46);
+        lista.insertarInicio(12);
+        lista.insertarInicio(87);
+        lista.insertarInicio(125);
+        lista.insertarInicio(30);
+        System.out.println(lista.toString());
+        System.out.println(lista.recorreReversa());
+        System.out.println("Primer valor: "+lista.obtenerPrimero());
+        lista.insertarFinal(-25);
+        lista.insertarFinal(-10);
+        System.out.println(lista.toString());
+        System.out.println(lista.recorreReversa());
+        System.out.println("Primer valor: "+lista.obtenerPrimero());
+        lista.eliminarEspecifico(87);
+        System.out.println(lista.toString());
+        System.out.println(lista.recorreReversa());
+        lista.eliminarEspecifico(30);
+        System.out.println(lista.toString());
+        System.out.println(lista.recorreReversa());
+        System.out.println("Primer valor: "+lista.obtenerPrimero());
+        lista.ordenar();
+        System.out.println(lista.toString());
+        System.out.println(lista.recorreReversa());
+        System.out.println("Primer valor: "+lista.obtenerPrimero());
+
+    }
     public static void main(String[] args) 
     {
-        probandoListaEnlazadaInicio();
+        probandoListaDobleEnlazadaInicioTermino();
         
             
     }
