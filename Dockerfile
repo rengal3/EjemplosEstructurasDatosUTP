@@ -1,5 +1,5 @@
     # Use a base image with Java installed (e.g., OpenJDK)
-    FROM openjdk:17-jdk-slim
+    FROM eclipse-temurin:21-jdk
 
     # Set the working directory inside the container
     WORKDIR /app
@@ -11,7 +11,7 @@
     COPY src ./src
 
     # Build the application using Maven (this will download dependencies)
-    RUN mvn clean package -DskipTests
+    RUN mvn -B package
 
     # Copy the built JAR/WAR file into the image
     COPY target/*.jar app.jar
