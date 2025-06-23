@@ -14,7 +14,7 @@
     #RUN mvn -B package --file pom.xml
 
     # Copy the built JAR/WAR file into the image
-    COPY target/*.jar /app/.
+    #COPY target/*.jar /app/.
 
     # Expose the port your application listens on (if applicable)
     EXPOSE 8080
