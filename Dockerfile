@@ -11,7 +11,7 @@
     COPY src ./src
 
     # Build the application using Maven (this will download dependencies)
-    RUN mvn -B package
+    RUN mvn -B package --file pom.xml
 
     # Copy the built JAR/WAR file into the image
     COPY target/*.jar app.jar
