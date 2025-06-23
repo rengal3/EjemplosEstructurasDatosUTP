@@ -1,12 +1,23 @@
-# Use a base image with OpenJDK (Java Development Kit)
-FROM openjdk:17-alpine
+    # Use a base image with Java installed (e.g., OpenJDK)
+    FROM openjdk:17-jdk-slim
 
-# Set the working directory inside the container
-WORKDIR /app
+    # Set the working directory inside the container
+    WORKDIR /app
 
-# Copy the application's JAR file into the container
-# Assuming your JAR file is named 'your-application.jar' and is in the same directory as the Dockerfile
-COPY EjemplosTDD-1.0-SNAPSHOT.jar /app/EjemplosTDD-1.0-SNAPSHOT.jar
+    # Copy the Maven project's pom.xml to leverage Maven's dependency caching
+    COPY pom.xml .
 
-# Define the command to run the application when the container starts
-CMD ["java", "-jar", "EjemplosTDD-1.0-SNAPSHOT.jar"]
+    # Copy the source code
+    COPY src ./src
+
+    # Build the application using Maven (this will download dependencies)
+    RUN mvn clean package -DskipTests
+
+    # Copy the built JAR/WAR file into the image
+    COPY target/*.jar app.jar
+
+    # Expose the port your application listens on (if applicable)
+    EXPOSE 8080
+
+    # Define the command to run your application when the container starts
+    ENTRYPOINT ["java", "-jar", "app.jar"]
